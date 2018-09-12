@@ -80,18 +80,18 @@
 
 
 
-<meta name="description" content="2016年  初步接触Web前端开发 echarts.js可视化组件库的探索  2017年  前后端分离 沟通媒介 文档-&amp;gt; swagger vue 渐进式使用的过程 d3.js可视化组件库的探索 node.js的初步探索 使用koa2框架提供rest服务  2018年  vue服务端渲染的初步探索 前后端分离 沟通媒介 swagger-&amp;gt; yapi 组件封装 开发流程和规范的思考 关">
+<meta name="description" content="架构/设计/常规  单一职责原则 一个类只能干一个事情，一个方法最好也只干一件事情。">
 <meta name="keywords" content="思考">
 <meta property="og:type" content="article">
-<meta property="og:title" content="时间轴">
-<meta property="og:url" content="http://yoursite.com/2018/09/05/timeLine/index.html">
+<meta property="og:title" content="Code Review 的一些原则">
+<meta property="og:url" content="http://yoursite.com/2018/09/12/code review/index.html">
 <meta property="og:site_name" content="Peiwen&#39;s Blog">
-<meta property="og:description" content="2016年  初步接触Web前端开发 echarts.js可视化组件库的探索  2017年  前后端分离 沟通媒介 文档-&amp;gt; swagger vue 渐进式使用的过程 d3.js可视化组件库的探索 node.js的初步探索 使用koa2框架提供rest服务  2018年  vue服务端渲染的初步探索 前后端分离 沟通媒介 swagger-&amp;gt; yapi 组件封装 开发流程和规范的思考 关">
+<meta property="og:description" content="架构/设计/常规  单一职责原则 一个类只能干一个事情，一个方法最好也只干一件事情。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-05T09:11:48.213Z">
+<meta property="og:updated_time" content="2018-09-12T02:38:10.844Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="时间轴">
-<meta name="twitter:description" content="2016年  初步接触Web前端开发 echarts.js可视化组件库的探索  2017年  前后端分离 沟通媒介 文档-&amp;gt; swagger vue 渐进式使用的过程 d3.js可视化组件库的探索 node.js的初步探索 使用koa2框架提供rest服务  2018年  vue服务端渲染的初步探索 前后端分离 沟通媒介 swagger-&amp;gt; yapi 组件封装 开发流程和规范的思考 关">
+<meta name="twitter:title" content="Code Review 的一些原则">
+<meta name="twitter:description" content="架构/设计/常规  单一职责原则 一个类只能干一个事情，一个方法最好也只干一件事情。">
 
 
 
@@ -109,7 +109,7 @@
   };
 </script>
 
-  <title> 时间轴 | Peiwen's Blog </title>
+  <title> Code Review 的一些原则 | Peiwen's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +249,7 @@
             
             
               
-                时间轴
+                Code Review 的一些原则
               
             
           </h1>
@@ -261,8 +261,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-09-05T17:07:00+08:00" content="2018-09-05">
-              2018-09-05
+            <time itemprop="dateCreated" datetime="2018-09-12T10:25:00+08:00" content="2018-09-12">
+              2018-09-12
             </time>
           </span>
 
@@ -291,8 +291,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2018/09/05/timeLine/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/09/05/timeLine/" itemprop="commentsCount"></span>
+                <a href="/2018/09/12/code review/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/09/12/code review/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -314,28 +314,79 @@
       
 
       
-        <h3 id="2016年"><a href="#2016年" class="headerlink" title="2016年"></a>2016年</h3><hr>
+        <h3 id="架构-设计-常规"><a href="#架构-设计-常规" class="headerlink" title="架构/设计/常规"></a>架构/设计/常规</h3><hr>
 <ol>
-<li>初步接触Web前端开发</li>
-<li>echarts.js可视化组件库的探索</li>
+<li><p>单一职责原则</p>
+<p>一个类只能干一个事情，一个方法最好也只干一件事情。<a id="more"></a>比较常见的违背是一个类既干UI的事情，又干逻辑的事情，这个在低质量的客户端代码里很常见。</p>
+</li>
+<li><p>行为是否统一</p>
+<ul>
+<li>缓存是否统一</li>
+<li>错误处理是否统一</li>
+<li>错误提示是否统一</li>
+<li>弹出框是否统一</li>
+<li>……</li>
+</ul>
+</li>
+<li><p>代码污染</p>
+<p>代码有没有对其他模块强耦合</p>
+</li>
+<li><p>重复代码</p>
+<p>应该抽取重复代码</p>
+</li>
+<li><p>开闭原则</p>
+</li>
+<li><p>面向接口编程</p>
+</li>
+<li><p>健壮性</p>
+<ul>
+<li>是否考虑线程安全</li>
+<li>数据访问是否一致性</li>
+<li>边界处理是否完整</li>
+<li>逻辑是否健壮</li>
+<li>是否有内存泄漏</li>
+<li>有没有循环依赖</li>
+<li>有没有野指针</li>
+<li>是否检查了数组的“越界“错误</li>
+<li>……</li>
+</ul>
+</li>
+<li><p>错误处理</p>
+</li>
+<li><p>改动是不是对代码的提升</p>
+<p>新的改动是打补丁，让代码质量继续恶化，还是对代码质量做了修复</p>
+</li>
+<li><p>效率/性能</p>
+<ul>
+<li>关键算法的时间复杂度多少？有没有可能有潜在的性能瓶颈</li>
+<li>客户端程序对频繁消息和较大数据等耗时操作是否处理得当</li>
+</ul>
+</li>
 </ol>
-<h3 id="2017年"><a href="#2017年" class="headerlink" title="2017年"></a>2017年</h3><hr>
+<h3 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h3><hr>
 <ol>
-<li>前后端分离 沟通媒介 文档-&gt; swagger</li>
-<li>vue 渐进式使用的过程</li>
-<li>d3.js可视化组件库的探索</li>
-<li>node.js的初步探索</li>
-<li>使用koa2框架提供rest服务</li>
-</ol>
-<h3 id="2018年"><a href="#2018年" class="headerlink" title="2018年"></a>2018年</h3><hr>
-<ol>
-<li>vue服务端渲染的初步探索</li>
-<li>前后端分离 沟通媒介 swagger-&gt; yapi</li>
-<li>组件封装</li>
-<li>开发流程和规范的思考</li>
-<li>关于系统运维和代码重构的思考</li>
-<li>mapbox-gl 地理信息可视化</li>
-<li>g2.js可视化组件库的探索</li>
+<li><p>可读性</p>
+<p>衡量可读性的可以有很好实践的标准，就是 Reviewer 能否非常容易的理解这个代码。如果不是，那意味着代码的可读性要进行改进</p>
+</li>
+<li><p>命名</p>
+<ul>
+<li>命名对可读性非常重要</li>
+<li>是否跟系统属性命名造成冲突</li>
+<li>英语用词尽量准确一点，必要时可以查字典</li>
+</ul>
+</li>
+<li><p>函数长度/类长度</p>
+<ul>
+<li>函数太长的不好阅读</li>
+<li>类太长了，检查是否违反的 单一职责 原则</li>
+</ul>
+</li>
+<li><p>注释</p>
+<p>恰到好处的注释,不是注释越多越好</p>
+</li>
+<li><p>参数个数</p>
+<p>不要太多，一般不要超过 3 个</p>
+</li>
 </ol>
 
       
@@ -366,17 +417,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/mapbox  tiles-server/" rel="next" title="Mapbox tiles-server 本地化探索">
-                <i class="fa fa-chevron-left"></i> Mapbox tiles-server 本地化探索
+              <a href="/2018/09/06/Begin/" rel="next" title="一切的开始">
+                <i class="fa fa-chevron-left"></i> 一切的开始
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/06/Begin/" rel="prev" title="一切的开始">
-                一切的开始 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -402,8 +449,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/09/05/timeLine/"
-           data-title="时间轴" data-url="http://yoursite.com/2018/09/05/timeLine/">
+      <div class="ds-thread" data-thread-key="2018/09/12/code review/"
+           data-title="Code Review 的一些原则" data-url="http://yoursite.com/2018/09/12/code review/">
       </div>
     
   </div>
@@ -516,7 +563,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2016年"><span class="nav-number">1.</span> <span class="nav-text">2016年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2017年"><span class="nav-number">2.</span> <span class="nav-text">2017年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018年"><span class="nav-number">3.</span> <span class="nav-text">2018年</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#架构-设计-常规"><span class="nav-number">1.</span> <span class="nav-text">架构/设计/常规</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码风格"><span class="nav-number">2.</span> <span class="nav-text">代码风格</span></a></li></ol></div>
             
           </div>
         </section>
