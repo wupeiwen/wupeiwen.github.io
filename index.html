@@ -318,14 +318,13 @@
 
       
         
-          
-            <h3 id="初识这门技术"><a href="#初识这门技术" class="headerlink" title="初识这门技术"></a>初识这门技术</h3><hr>
-<p>第一次知道前端开发是在大学的课堂上, 在林老师的课堂上知道了html、css。当时的学习过程很枯燥，老师在讲台讲解w3c的标准文档，下面睡到一大片。看到这种情况后，老师就拿出了杀手锏–聊天，讲讲他的大学生活以及在海外的工作经历，时不时的还会邀请他的学生（美术专业的学长）给我们演示一些项目上的前端案例。后面通过其他课程了解到JavaScript，ajax，在课程基本上是昏昏欲睡的状态。整个过程算是初步接触到了前端开发，感谢这些老师们。（捂脸）</p>
-<h3 id="跳进了“深渊巨坑”"><a href="#跳进了“深渊巨坑”" class="headerlink" title="跳进了“深渊巨坑”"></a>跳进了“深渊巨坑”</h3><hr>
-<p>接下来的课程中了解到了安卓开发和Java开发。就当是了解到的信息来看，我热衷于寻找JavaWeb开发的相关岗位。经重重考验来到了涛哥的部门，入职第一天涛哥找我聊职业规划，聊着聊着涛哥问我：“你会不会html、css、javascript这些语言？现在部门有个项目，如果有了解的话，要不想挑战下，承担下系统的前端开发任务？”，我一脸懵逼。接下任务后，自己学习了前端的一些基础知识，向后端前辈请教过无数前端问题后，算是入了门。接下来的5、6个月加班加点学习和实践，最终完成了项目。<br>在这个项目完成后，项目组小伙伴聚在一起仔细复盘了整个项目的研发过程，发现了一系列存在的问题。针对前后端沟通以及产品细节设计方面，我们补足了设计文档，经过调研选用swagger作为前后端沟通的媒介，算是解决了这两个问题。（题外话：后来发现真的是太天真）</p>
-<h3 id="“爬坑”–进阶之旅"><a href="#“爬坑”–进阶之旅" class="headerlink" title="“爬坑”–进阶之旅"></a>“爬坑”–进阶之旅</h3><hr>
-
-          
+          <h3 id="初识这门技术"><a href="#初识这门技术" class="headerlink" title="初识这门技术"></a>初识这门技术</h3><hr>
+<p>第一次知道前端开发是在大学的课堂上, 在林老师的课堂上知道了html、css。当时的学习过程很枯燥，老师在讲台讲解w3c的标准文档，下面睡到一大片。看到这种情况后，老师就拿出了杀手锏
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/09/06/Begin/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1436,14 +1435,14 @@
 
       
         
-          
-            <h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><hr>
+          <h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><hr>
 <p>不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：</p>
-<p>思路：把一个字符串13579先变成Array——[1, 3, 5, 7, 9]，再利用reduce()写出一个把字符串转换为Number的函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;</span><br><span class="line"></span><br><span class="line">function string2int(s) &#123;</span><br><span class="line">  return s.split(&apos;&apos;).map(function (x) &#123;</span><br><span class="line">    return x * 1</span><br><span class="line">  &#125;).reduce(function (x, y) &#123;</span><br><span class="line">    if (x === 0) &#123;</span><br><span class="line">      return 0</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return x * 10 + y</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 测试:</span><br><span class="line">if (string2int(&apos;0&apos;) === 0 &amp;&amp; string2int(&apos;12345&apos;) === 12345 &amp;&amp; string2int(&apos;12300&apos;) === 12300) &#123;</span><br><span class="line">  if (string2int.toString().indexOf(&apos;parseInt&apos;) !== -1) &#123;</span><br><span class="line">    console.log(&apos;请勿使用parseInt()!&apos;)</span><br><span class="line">  &#125; else if (string2int.toString().indexOf(&apos;Number&apos;) !== -1) &#123;</span><br><span class="line">    console.log(&apos;请勿使用Number()!&apos;)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&apos;测试通过!&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  console.log(&apos;测试失败!&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><hr>
-<p>请把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：[‘adam’, ‘LISA’, ‘barT’]，输出：[‘Adam’, ‘Lisa’, ‘Bart’]。<br>思路：使用map遍历数组，将元素首字母大写，其余小写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;</span><br><span class="line"></span><br><span class="line">function normalize(arr) &#123;</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 测试:</span><br><span class="line">if (normalize([&apos;adam&apos;, &apos;LISA&apos;, &apos;barT&apos;]).toString() === [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;].toString()) &#123;</span><br><span class="line">  console.log(&apos;测试通过!&apos;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  console.log(&apos;测试失败!&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+<p>思路：把一个字符串13579先变成Array——[1, 3, 5, 7, 9]，再利用reduce()写出一个把字符串转换为Number的函数。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/02/24/es6 map reduce/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
