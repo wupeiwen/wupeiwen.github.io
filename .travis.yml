@@ -1,0 +1,26 @@
+language: node_js
+node_js: stable
+
+# S: Build Lifecycle
+install:
+  - npm install
+
+script:
+  - hexo g
+
+after_script:
+  - cd ./public
+  - git init
+  - git config --global user.name 'wupeiwen'
+  - git config --global user.email 'javapeiwen2010@gmail.com'
+  - git add .
+  - git commit -m "Site updated"
+  - git push --force --quiet "https://${tocken}@${GH_REF}" master:master
+# E: Build LifeCycle
+
+branches:
+  only:
+    - source
+env:
+ global:
+   - GH_REF: github.com/wupeiwen/wupeiwen.github.io.git
