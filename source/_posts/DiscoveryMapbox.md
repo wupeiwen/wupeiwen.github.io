@@ -36,7 +36,7 @@ Mapbox GL JS是一个JavaScript库，它使用WebGL从矢量切片和Mapbox样�
 ```
 在浏览器中打开HTML页面，可以看到加载了streets-v9样式的地图
 
-![地图效果](http://7xu37n.com1.z0.glb.clouddn.com/StyleDarkV9.png)
+![地图效果](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/StyleDarkV9.png)
 
 ------
 
@@ -59,7 +59,7 @@ Mapbox GL JS是一个JavaScript库，它使用WebGL从矢量切片和Mapbox样�
   mapbox://styles/mapbox/navigation-guidance-night-v2
 ```
 
-![预定义样式效果图](http://7xu37n.com1.z0.glb.clouddn.com/defaultMapStyle.png)
+![预定义样式效果图](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/defaultMapStyle.png)
 从左到右依次，Light、Dark、Streets、Outdoors、Satellite Streets、Navigation
 
 4. center<sup>4</sup>:地图的初始地理中心点。默认为  [0, 0] 注意：Mapbox GL使用经度，纬度坐标顺序来匹配GeoJSON。

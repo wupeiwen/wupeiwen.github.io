@@ -29,7 +29,7 @@ categories: SearchEngine
 #### GG搜索引擎<br>
 ##### 搜索引擎的总体结构<br>
 
-![GG搜索引擎总体结构图 | center](http://7xu37n.com1.z0.glb.clouddn.com/SearchEngine_structure.png)
+![GG搜索引擎总体结构图 | center](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/SearchEngine_structure.png)
 - **网络爬虫** <br> 网络爬虫又被称为网络机器人（Robot）或者蜘蛛（Spider），它的主要目的是获取互联网上的信息。网络爬虫能够像真人一样浏览网页，并自动的在Internet上漫游，它利用网页中的超链接遍历整个互联网，通过URL引用从一个html文档链接到另一个html文档，利用网络爬虫收集到的信息可以有很多作用，比如建立站点镜像、收集指定信息等等。<br> 网站本身可以有两种方式声明不想被搜索引擎收录的内容：第一种是使用Robots协议，即在站点根目录下增加一个纯文本文件robots.txt，另一种方式就是直接在html页面中使用robots的meta标签。
 
 - **索引库** <br> 为了方便查找，早在计算机出现之前就已经有人为图书馆建立索引。<br> 为了按词快速定位抓取过来的文档，需要以词为基础建立全文索引，将索引更新到索引数据库，索引数据库就是一个很大的查询表，主要的字段有网站名称、标题、摘要、URL地址等。对网页内容进行全文索引就是网页中的每个单词进行标引，一般来说，标引的索引词越多，检索的全面性就越高。
@@ -39,7 +39,7 @@ categories: SearchEngine
 ##### 搜索引擎的设计
 1. **信息采集模块**
  + *网络爬虫的基本原理*<br> 在搜索引擎中，爬虫程序从一系列初始链接中提取网页，并把这些初始网页中的URL也提取出来，放入到URL的Todo队列之中，然后再遍历Todo队列中的URL，下载对应的网页并将网页中新发现的URL再一次放入到Todo队列之中。为了判断一个URL是否已经被访问过，将所有已经访问过的URL放入到一个Visited表中。<br>
-![爬虫爬取的基本过程 | center](http://7xu37n.com1.z0.glb.clouddn.com/WebCrawler.png)<br>
+![爬虫爬取的基本过程 | center](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/WebCrawler.png)<br>
 但是考虑到实际情况，为了降低爬虫程序对于内存的消耗以及爬取效率问题本系统使用了另外一套解决方案。在这个方案中，  使用Mysql数据库来存储Todo队列，将对内存消耗转换为对硬盘空间的消耗。并且在往数据库里存储URL的时候将每个URL地址 重新以MD5加密方式重新编码为一段16位的字符串，方便判断此URL是否已经被访问过。<br>
  整个互联网可以看作是一张很大图，而每个URL相当于图中的一个节点，因此，网页遍历就可以采用遍历图的算法和思路进行。网络爬虫的遍历算法通常来说有三种：深度优先遍历、广度优先遍历和最佳优先遍历。但是需要注意的是，深度优先遍历算法有一个致命的缺陷，采用深度优先遍历算法的网络爬虫很容易陷入死循环。<br><br>
 
@@ -48,7 +48,7 @@ categories: SearchEngine
 
 + *设计数据库*<br>在设计数据库时，本系统使用了MySQL数据库，因为MySql不仅开源而且体积小、速度快，非常适合作为本系统的数据库。<br>
 数据库是为了存储网络爬虫爬取的URL地址，将爬取URL和抓取网页分离开。数据库表link的表结构如下图：<br>
-![数据库表link的表结构 | center](http://7xu37n.com1.z0.glb.clouddn.com/table_link.png)<br>
+![数据库表link的表结构 | center](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/table_link.png)<br>
 下面对表link中的各个字段加以说明：id是表的主键，date是记录爬取链接的时间，link_md5记录的是URL以MD5方式重新编码以后的16位字符串，URL是将要抓取的网页的地址。<br><br>
 2. **信息处理分析模块的设计**
  + *从HTML文件中提取文本*  <br>
@@ -86,13 +86,13 @@ description:hao123小游戏汇聚互联网热门精品小游戏，免费提供�
 + *网络爬虫的实现*<br>
 在实现爬虫时，系统用到了Jsoup这个开源jar包，使用这个jar包只需要设置一个起始地URL地址，也就是爬虫的入口，就可以很方便的实现一个简易的网络爬虫。<br>
 为了更加方便的使用网络爬虫，系统实现一个网络爬虫的图形界面，GUI截图如下：<br>
-![网络爬虫GUI | center](http://7xu37n.com1.z0.glb.clouddn.com/WebCrawler_GUI.png)<br>
+![网络爬虫GUI | center](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/WebCrawler_GUI.png)<br>
 在输入一个其实URL地址之后，点击爬取按钮，网络爬虫就会像在上一章里介绍的那样开始工作，并将爬取到的URL地址存放在Mysql数据库里。<br>
 在处理过程中用到了一个MD5(一种散列函数)工具类，它具有压缩性、容易计算、抗修改性和强抗碰撞等特点。<br>
 在爬取的过程中，使用对比URL的MD5值是否在数据库中已经存在来判断此URL是否已经被访问过。<br><br>
 + *实现数据库*<br>
 使用MySQL实现表link的sql语句如下：<br>
-![link表的实现 | center](http://7xu37n.com1.z0.glb.clouddn.com/sql.png)<br><br>
+![link表的实现 | center](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/sql.png)<br><br>
 2.  **信息处理分析模块的实现**
 + *实现从HTML文件中提取文本*<br>
 在上一章中已经说过，要提取文件中的文本信息，应首先提取网页的编码方式。在这里系统使用正则表达式来提取网页的编码方式。下面是根据在上一章中已经介绍过的几种情况在具体实现过程中的所使用的正则表达式：<br>
@@ -112,7 +112,7 @@ description:hao123小游戏汇聚互联网热门精品小游戏，免费提供�
 `regex = "<body.*?</body>"`<br><br>
 + *实现存储网页信息*<br>
 将在上一节中提取到的网页的文本信息存储到本地text文件中，其存储示例如下图所示：<br>
-![存储示例 | center](http://7xu37n.com1.z0.glb.clouddn.com/Strong_example.png)<br><br>
+![存储示例 | center](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/Strong_example.png)<br><br>
 + *中文分词及建立索引库的实现*<br>
 在上一章中已经提到，在进行中文分词和建立索引库的时候系统用到的是Lucene工具包。下面是使用MMAnalyzer分词器对一段话进行分词后的词库：<br>
 待分词的语句：腾讯视频电影频道提供全新热门电影免费观看，海量高清正版电影在线观看，同步更新全国视频网站热映大片，包括欧美大片，日韩电影，华语电影等。<br>
@@ -122,15 +122,15 @@ description:hao123小游戏汇聚互联网热门精品小游戏，免费提供�
 3.  **信息查询模块的实现**
 + *用户搜索界面的实现*<br>
 搜索页面运行结果如下图所示：<br>
-![搜索页面GUI](http://7xu37n.com1.z0.glb.clouddn.com/SearchEngine_GUI.png)<br><br>
+![搜索页面GUI](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/SearchEngine_GUI.png)<br><br>
 + *显示结果界面的实现*<br>
 下面以搜索“汽车”为例显示搜索结果，如下图所示：<br>
-![搜索结果截图](http://7xu37n.com1.z0.glb.clouddn.com/SearchResult.png)<br>
+![搜索结果截图](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/SearchResult.png)<br>
 可以看到，用户搜索的关键词以红色高亮显示，其它标题部分是一个可点击的链接为蓝色字体，正文部分以黑色字体显示。<br><br>
 + *服务器端处理过程的实现*<br>
 服务器获得请求之后首先对请求和响应重新定义编码，对中文进行正确的解码，然后设置默认检索库后开始检索索引库，将关键字设置为高亮显示后将检索结果传回搜索页面显示，完成服务器端的处理。<br>
 服务器处理过程如下图所示：<br>
-![服务器处理过程 | center](http://7xu37n.com1.z0.glb.clouddn.com/ServerProcess.png)<br><br>
+![服务器处理过程 | center](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/ServerProcess.png)<br><br>
 ***
 ##### 系统部署与运行
 系统的客户端使用JSP实现的，所以我选择了在Tomcat上部署和运行本系统。下面是简单介绍一下系统部署过程：<br>

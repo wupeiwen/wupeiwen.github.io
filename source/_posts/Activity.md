@@ -16,7 +16,7 @@ categories: Android
 
 ### Activity生命周期 ###
 先看下图：
-![](http://7xu37n.com1.z0.glb.clouddn.com/Activity.jpg)
+![](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/Activity.jpg)
 
 这个图不再多说什么，下面我们通过一个实例来说明问题。新建工程，编写如下代码：
 
