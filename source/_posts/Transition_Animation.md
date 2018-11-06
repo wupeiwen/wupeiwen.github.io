@@ -176,7 +176,7 @@ div:hover {
 }
 ```
 此外，还可以等于取alternate、reverse、alternate-reverse等值。它们的含义见下图（假定动画连续播放三次）。
-![animation-direction](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/0dc89ada3a263d93a887aea8474a9de284ee7f3b/image/animation-direction.png)
+![animation-direction](https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/source/image/animation-direction.png)
 简单说，animation-direction指定了动画播放的方向，最常用的值是normal和reverse。浏览器对其他值的支持情况不佳，应该慎用。
 #### 2.4 animation的各项属性
 同transition一样，animation也是一个简写形式。
