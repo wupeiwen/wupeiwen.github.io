@@ -27,7 +27,7 @@ categories: 规范
 - perf: 提升性能
 - test: 增加修改测试用例
 - chore: 修改工具相关（包括但不限于文档、代码生成等）
-- deps: 升级依赖
+- deps: 升级依赖<!-- more -->
 
 2. scope
 
