@@ -6,8 +6,6 @@ tags:
 categories: webpack
 ---
 
-# Webpack 4 配置最佳实践
-
 > 本文作者 Daniel 蚂蚁金服·数据体验技术团队，转载分享供小伙伴们学习研究
 
 Webpack 4 发布已经有一段时间了。Webpack 的版本号已经来到了 4.12.x。但因为 Webpack 官方还没有完成迁移指南，在文档层面上还有所欠缺，大部分人对升级 Webpack 还是一头雾水。
