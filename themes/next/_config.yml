@@ -26,7 +26,7 @@ rss:
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  about: /404.html
+  about: http://cv.qiaobutang.com/r/5b8890f50cf2550629f86288
   categories: /categories
   archives: /archives
   tags: /tags
