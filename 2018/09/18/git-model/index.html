@@ -1,0 +1,692 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="git,git flow,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="分支介绍master 主分支 , 产品的功能全部实现后 , 最终在master分支对外发布 该分支为只读唯一分支 , 只能从其他分支(release/hotfix)合并 , 不能在此分支修改 另外所有在master分支的推送应该打标签做记录,方便追溯 例如release合并到master , 或hotfix合并到master">
+<meta name="keywords" content="git,git flow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git-flow工作流模型">
+<meta property="og:url" content="http://yoursite.com/2018/09/18/git-model/index.html">
+<meta property="og:site_name" content="Peiwen&#39;s Blog">
+<meta property="og:description" content="分支介绍master 主分支 , 产品的功能全部实现后 , 最终在master分支对外发布 该分支为只读唯一分支 , 只能从其他分支(release/hotfix)合并 , 不能在此分支修改 另外所有在master分支的推送应该打标签做记录,方便追溯 例如release合并到master , 或hotfix合并到master">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/source/image/git-model%402x.png">
+<meta property="og:updated_time" content="2019-07-10T07:34:08.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git-flow工作流模型">
+<meta name="twitter:description" content="分支介绍master 主分支 , 产品的功能全部实现后 , 最终在master分支对外发布 该分支为只读唯一分支 , 只能从其他分支(release/hotfix)合并 , 不能在此分支修改 另外所有在master分支的推送应该打标签做记录,方便追溯 例如release合并到master , 或hotfix合并到master">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/source/image/git-model%402x.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6274779684970431000,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> git-flow工作流模型 | Peiwen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Peiwen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="http://cv.qiaobutang.com/r/5b8890f50cf2550629f86288" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                git-flow工作流模型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-09-18T11:00:00+00:00" content="2018-09-18">
+              2018-09-18
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/09/18/git-model/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/09/18/git-model/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="分支介绍"><a href="#分支介绍" class="headerlink" title="分支介绍"></a>分支介绍</h3><h4 id="master"><a href="#master" class="headerlink" title="master"></a>master</h4><ul>
+<li>主分支 , 产品的功能全部实现后 , 最终在master分支对外发布</li>
+<li>该分支为只读唯一分支 , 只能从其他分支(release/hotfix)合并 , 不能在此分支修改</li>
+<li>另外所有在master分支的推送应该打标签做记录,方便追溯</li>
+<li>例如release合并到master , 或hotfix合并到master<a id="more"></a></li>
+</ul>
+<h4 id="develop"><a href="#develop" class="headerlink" title="develop"></a>develop</h4><ul>
+<li>主开发分支 , 基于master分支克隆</li>
+<li>包含所有要发布到下一个release的代码</li>
+<li>该分支为只读唯一分支 , 只能从其他分支合并</li>
+<li>feature功能分支完成 , 合并到develop</li>
+<li>bugfix补丁分支完成 , 合并到develop</li>
+<li>develop拉取release分支 , 提测</li>
+<li>release/hotfix 分支完成 , 合并到develop并推送</li>
+</ul>
+<h4 id="feature"><a href="#feature" class="headerlink" title="feature"></a>feature</h4><ul>
+<li>功能开发分支 , 基于develop分支克隆 , 主要用于新需求新功能的开发</li>
+<li>功能开发完毕后合到develop分支</li>
+<li>feature分支可同时存在多个 , 用于团队中多个功能同时开发 , 属于临时分支 , 功能完成后删除</li>
+</ul>
+<h4 id="release"><a href="#release" class="headerlink" title="release"></a>release</h4><ul>
+<li>测试分支 , 基于feature分支合并到develop之后  , 从develop分支克隆</li>
+<li>主要用于提交给测试人员进行功能测试 , 测试过程中发现的BUG在本分支进行修复 , 修复完成上线后合并到develop/master分支并推送(完成功能) , 打tag</li>
+<li>属于临时分支 , 功能上线后删除</li>
+<li>命名格式x.x.x(主版本号.次版本号.修订号)</li>
+<li>大版本发布, 修改第一位主版本号，第二位置为0, 第三位置为0</li>
+<li>小版本发布, 第一位不变, 修改第二位次版本号, 第三位置为0</li>
+</ul>
+<h4 id="hotfix"><a href="#hotfix" class="headerlink" title="hotfix"></a>hotfix</h4><ul>
+<li>补丁分支 , 基于master分支克隆 , 主要用于对线上的版本进行BUG修复</li>
+<li>修复完毕后合并到develop/master分支并推送 , 打tag</li>
+<li>属于临时分支 , 补丁修复后删除</li>
+<li>所有hotfix分支的修改会进入到下一个release</li>
+<li>命名格式x.x.x(主版本号.次版本号.修订号)</li>
+<li>修复版本发布, 第一位不变, 第二位不变, 修改第三位修订号</li>
+</ul>
+<h4 id="bugfix"><a href="#bugfix" class="headerlink" title="bugfix"></a>bugfix</h4><ul>
+<li>补丁分支 , 基于develop分支克隆 , 主要用于对develop分支的代码进行BUG修复</li>
+<li>修复完毕后合并到develop分支并推送</li>
+<li>属于临时分支 , 补丁修复后删除</li>
+<li>所有hotfix分支的修改会进入到下一个release</li>
+</ul>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>通过<code>git flow init</code>命令把当前目录变成Git FLow可以管理的仓库。<br>初始化过程会&lt;未完待续…&gt;</p>
+<h3 id="工作流示意图"><a href="#工作流示意图" class="headerlink" title="工作流示意图"></a>工作流示意图</h3><p><img src="https://raw.githubusercontent.com/wupeiwen/wupeiwen.github.io/source/image/git-model%402x.png" alt="git-model"></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+            <a href="/tags/git-flow/" rel="tag">#git flow</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/13/I_think/" rel="next" title="开发回顾">
+                <i class="fa fa-chevron-left"></i> 开发回顾
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/28/git_commit_rules/" rel="prev" title="Commit 提交规范">
+                Commit 提交规范 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/09/18/git-model/" data-title="git-flow工作流模型" data-url="http://yoursite.com/2018/09/18/git-model/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Peiwen">
+          <p class="site-author-name" itemprop="name">Peiwen</p>
+          <p class="site-description motion-element" itemprop="description">Life is good!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wupeiwen" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wupeiwen2010" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分支介绍"><span class="nav-number">1.</span> <span class="nav-text">分支介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#master"><span class="nav-number">1.1.</span> <span class="nav-text">master</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#develop"><span class="nav-number">1.2.</span> <span class="nav-text">develop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#feature"><span class="nav-number">1.3.</span> <span class="nav-text">feature</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#release"><span class="nav-number">1.4.</span> <span class="nav-text">release</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hotfix"><span class="nav-number">1.5.</span> <span class="nav-text">hotfix</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bugfix"><span class="nav-number">1.6.</span> <span class="nav-text">bugfix</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作流示意图"><span class="nav-number">3.</span> <span class="nav-text">工作流示意图</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peiwen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wupeiwen"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
