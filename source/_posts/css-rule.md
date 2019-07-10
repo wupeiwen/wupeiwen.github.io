@@ -16,7 +16,7 @@ at-rule 由一个 @ 关键字和后续的一个区块组成，如果没有区块
 @charset "utf-8";
 ```
 ### @import
-用于引入一个 CSS 文件，除了 @charset 规则不会被引入，@import 可以引入另一个文件的全部内容。
+用于引入一个 CSS 文件，除了 @charset 规则不会被引入，@import 可以引入另一个文件的全部内容。<!-- more -->
 ```
 @import [ <url> | <string> ]
         [ supports( [ <supports-condition> | <declaration> ] ) ]?
